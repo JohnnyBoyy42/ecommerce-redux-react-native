@@ -1,10 +1,14 @@
 import React from 'react';
-import { View } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { Container } from './styles';
 
 export default function Main() {
-  return <Container />;
+  return (
+    <Container>
+      <Icon name="add" size={20} color="#FFF" />
+    </Container>
+  );
 }
 
 Main.navigationOptions = {
