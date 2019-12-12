@@ -1,6 +1,5 @@
-// import Intl from 'react-native-intl';
+export const formatPrice = number => {
+  const formattedNumber = parseFloat(number).toFixed(2);
 
-// export const { format: formatPrice } = new Intl.NumberFormat('pt-BR', {
-//   style: 'currency',
-//   currency: 'BRL',
-// });
+  return `R$ ${formattedNumber.toString().replace('.', ',')}`;
+};

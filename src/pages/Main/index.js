@@ -17,12 +17,10 @@ export default class Main extends Component {
 
       const data = response.data.map(product => ({
         ...product,
-        priceFormatted: product.price,
+        priceFormatted: formatPrice(product.price),
       }));
 
-      console.tron.log(data);
-
-      this.setState({ products: response.data });
+      this.setState({ products: data });
     } catch (error) {
       console.tron.log(error);
     }
