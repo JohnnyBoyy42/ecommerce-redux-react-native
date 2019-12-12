@@ -1,12 +1,27 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import { Container } from './styles';
+import api from '../../services/api';
 
-export default function Main() {
-  return (
-    <Container>
-      <Icon name="add" size={20} color="#fff" />
-    </Container>
-  );
+import { Container, AddToCartButton, AddToCartText } from './styles';
+
+export default class Main extends Component {
+  state = {
+    products: [],
+  };
+
+  async componentDidMount() {
+    const response = await api.get('products');
+  }
+
+  render() {
+    const { products } = this.state;
+    return (
+      <Container>
+        <AddToCartButton>
+          <AddToCartText>Teste</AddToCartText>
+        </AddToCartButton>
+      </Container>
+    );
+  }
 }
