@@ -6,11 +6,7 @@ import { Container } from './styles';
 export default function Main() {
   return (
     <Container>
-      <Icon name="add" size={20} color="#FFF" />
+      <Icon name="add" size={20} color="#fff" />
     </Container>
   );
 }
-
-Main.navigationOptions = {
-  title: 'Usuários',
-};
