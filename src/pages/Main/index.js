@@ -1,10 +1,23 @@
 import React, { Component } from 'react';
+
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import api from '../../services/api';
 import { formatPrice } from '../../util/format';
 
-import { Container, AddToCartButton, AddToCartText } from './styles';
+import {
+  Container,
+  List,
+  ProductImage,
+  Product,
+  ProductPrice,
+  ProductTitle,
+  AddButton,
+  ProductAmount,
+  ProductAmountText,
+  AddButtonText,
+  Wrapper,
+} from './styles';
 
 export default class Main extends Component {
   state = {
@@ -29,11 +42,29 @@ export default class Main extends Component {
   render() {
     const { products } = this.state;
     return (
-      <Container>
-        <AddToCartButton>
-          <AddToCartText>Teste</AddToCartText>
-        </AddToCartButton>
-      </Container>
+      <Wrapper>
+        <Container>
+          <List
+            data={products}
+            horizontal
+            keyExtractor={product => product.id}
+            renderItem={({ item }) => (
+              <Product key={item.id}>
+                <ProductImage source={{ uri: item.image }} />
+                <ProductTitle>{item.title}</ProductTitle>
+                <ProductPrice>{formatPrice(item.price)}</ProductPrice>
+                <AddButton onPress={() => this.handleAddProduct(item.id)}>
+                  <ProductAmount>
+                    <Icon name="add-shopping-cart" color="#FFF" size={20} />
+                    <ProductAmountText>{1 || 0}</ProductAmountText>
+                  </ProductAmount>
+                  <AddButtonText>ADICIONAR</AddButtonText>
+                </AddButton>
+              </Product>
+            )}
+          />
+        </Container>
+      </Wrapper>
     );
   }
 }
