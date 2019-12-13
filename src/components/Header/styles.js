@@ -21,4 +21,6 @@ export const Logo = styled.Image.attrs({
   height: 24px;
 `;
 
-export const Cart = styled.View``;
+export const Cart = styled.TouchableOpacity``;
+
+export const ImageButton = styled.TouchableOpacity``;
