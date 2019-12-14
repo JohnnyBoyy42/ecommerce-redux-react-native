@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import { RectButton } from 'react-native-gesture-handler';
 
 export const Wrapper = styled.View`
   flex: 1;
@@ -100,4 +101,19 @@ export const TotalAmount = styled.Text`
   font-weight: bold;
   color: #333;
   text-align: center;
+`;
+
+export const ButtonContainer = styled(RectButton)`
+  align-items: center;
+  justify-content: center;
+  background: #7159c1;
+  padding: 10px 0;
+  border-radius: 4px;
+  margin-top: 40px;
+`;
+
+export const ButtonText = styled.Text`
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
 `;

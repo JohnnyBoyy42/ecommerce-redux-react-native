@@ -23,6 +23,8 @@ import {
   TotalText,
   TotalLabel,
   TotalAmount,
+  ButtonContainer,
+  ButtonText,
 } from './styles';
 
 export default function Cart() {
@@ -80,8 +82,11 @@ export default function Cart() {
         />
         <TotalText>
           <TotalLabel>TOTAL</TotalLabel>
-          <TotalAmount>{formatPrice(188888888888888888888.88)}</TotalAmount>
+          <TotalAmount>{formatPrice(1888888.88)}</TotalAmount>
         </TotalText>
+        <ButtonContainer>
+          <ButtonText>FINALIZAR PEDIDO</ButtonText>
+        </ButtonContainer>
       </Container>
     </Wrapper>
   );
