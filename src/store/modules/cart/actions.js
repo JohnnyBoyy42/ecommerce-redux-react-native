@@ -4,3 +4,10 @@ export function addToCartRequest(id) {
     id,
   };
 }
+
+export function addToCartRequestSucess(id) {
+  return {
+    type: '@cart/ADD_REQUEST_SUCCESS',
+    id,
+  };
+}
