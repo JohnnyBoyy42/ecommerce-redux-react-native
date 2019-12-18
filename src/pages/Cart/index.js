@@ -35,7 +35,15 @@ import {
   RemoveProductContainer,
 } from './styles';
 
-function Cart({ products, total, removeFromCart }) {
+function Cart({ products, total, removeFromCart, updateAmountRequest }) {
+  function decrement(product) {
+    updateAmountRequest(product.id, product.amount - 1);
+  }
+
+  function increment(product) {
+    updateAmountRequest(product.id, product.amount + 1);
+  }
+
   return (
     <Wrapper>
       {products.length ? (
@@ -61,7 +69,7 @@ function Cart({ products, total, removeFromCart }) {
                 </ProductInfo>
                 <ProductControlWrapper>
                   <ProductControl>
-                    <AddProduct>
+                    <AddProduct onPress={() => decrement(item)}>
                       <Icon
                         name="remove-circle-outline"
                         size={20}
@@ -69,7 +77,7 @@ function Cart({ products, total, removeFromCart }) {
                       />
                     </AddProduct>
                     <ProductAmount value={String(item.amount)} />
-                    <RemoveProduct>
+                    <RemoveProduct onPress={() => increment(item)}>
                       <Icon
                         name="add-circle-outline"
                         size={20}
