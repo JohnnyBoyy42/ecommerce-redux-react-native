@@ -31,9 +31,11 @@ import {
   ButtonText,
   EmptyContainer,
   EmptyText,
+  ProductInfoContainer,
+  RemoveProductContainer,
 } from './styles';
 
-function Cart({ products, total }) {
+function Cart({ products, total, removeFromCart }) {
   return (
     <Wrapper>
       {products.length ? (
@@ -44,11 +46,18 @@ function Cart({ products, total }) {
             renderItem={({ item }) => (
               <CartWrapper>
                 <ProductInfo>
-                  <ProductImage source={{ uri: item.image }} />
-                  <LabelContainer>
-                    <ProductTitle>{item.title}</ProductTitle>
-                    <ProductPrice>{item.priceFormatted}</ProductPrice>
-                  </LabelContainer>
+                  <ProductInfoContainer>
+                    <ProductImage source={{ uri: item.image }} />
+                    <LabelContainer>
+                      <ProductTitle>{item.title}</ProductTitle>
+                      <ProductPrice>{item.priceFormatted}</ProductPrice>
+                    </LabelContainer>
+                    <RemoveProductContainer
+                      onPress={() => removeFromCart(item.id)}
+                    >
+                      <Icon name="clear" size={24} color="#7159c1" />
+                    </RemoveProductContainer>
+                  </ProductInfoContainer>
                 </ProductInfo>
                 <ProductControlWrapper>
                   <ProductControl>

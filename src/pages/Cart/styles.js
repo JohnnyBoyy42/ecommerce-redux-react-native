@@ -23,6 +23,15 @@ export const CartWrapper = styled.View`
 export const ProductInfo = styled.View`
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
+`;
+
+export const ProductInfoContainer = styled.View`
+  flex-direction: row;
+`;
+
+export const RemoveProductContainer = styled.TouchableOpacity`
+  align-items: center;
 `;
 
 export const ProductImage = styled.Image`
