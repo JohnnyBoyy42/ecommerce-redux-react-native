@@ -1,7 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { formatPrice } from '../../util/format';
+
+import * as CartActions from '../../store/modules/cart/actions';
 
 import {
   Wrapper,
@@ -27,23 +31,7 @@ import {
   ButtonText,
 } from './styles';
 
-export default function Cart() {
-  const products = [
-    {
-      id: 1,
-      title: 'Tênis de Caminhada Leve Confortável',
-      price: 179.9,
-      image:
-        'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis1.jpg',
-    },
-    {
-      id: 2,
-      title: 'Tênis VR Caminhada Confortável Detalhes Couro Masculino',
-      price: 139.9,
-      image:
-        'https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/modulo-redux/tenis2.jpg',
-    },
-  ];
+function Cart({ products, total }) {
   return (
     <Wrapper>
       <Container>
@@ -56,7 +44,7 @@ export default function Cart() {
                 <ProductImage source={{ uri: item.image }} />
                 <LabelContainer>
                   <ProductTitle>{item.title}</ProductTitle>
-                  <ProductPrice>{item.price}</ProductPrice>
+                  <ProductPrice>{item.priceFormatted}</ProductPrice>
                 </LabelContainer>
               </ProductInfo>
               <ProductControlWrapper>
@@ -68,13 +56,13 @@ export default function Cart() {
                       color="#7159c1"
                     />
                   </AddProduct>
-                  <ProductAmount value="3" />
+                  <ProductAmount value={String(item.amount)} />
                   <RemoveProduct>
                     <Icon name="add-circle-outline" size={20} color="#7159c1" />
                   </RemoveProduct>
                 </ProductControl>
                 <ProductTotalContainer>
-                  <ProductTotal>{formatPrice(item.price)}</ProductTotal>
+                  <ProductTotal>{item.subTotal}</ProductTotal>
                 </ProductTotalContainer>
               </ProductControlWrapper>
             </CartWrapper>
@@ -82,7 +70,7 @@ export default function Cart() {
         />
         <TotalText>
           <TotalLabel>TOTAL</TotalLabel>
-          <TotalAmount>{formatPrice(1888888.88)}</TotalAmount>
+          <TotalAmount>{total}</TotalAmount>
         </TotalText>
         <ButtonContainer>
           <ButtonText>FINALIZAR PEDIDO</ButtonText>
@@ -91,3 +79,22 @@ export default function Cart() {
     </Wrapper>
   );
 }
+
+const mapStateToProps = state => ({
+  products: state.cart.map(product => ({
+    ...product,
+    subTotal: formatPrice(product.price * product.amount),
+    priceFormatted: formatPrice(product.price),
+  })),
+  total: formatPrice(
+    state.cart.reduce(
+      (total, product) => total + product.price * product.amount,
+      0
+    )
+  ),
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(CartActions, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);
