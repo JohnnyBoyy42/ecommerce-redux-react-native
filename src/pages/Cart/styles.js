@@ -117,3 +117,15 @@ export const ButtonText = styled.Text`
   font-weight: bold;
   color: #fff;
 `;
+
+export const EmptyContainer = styled.View`
+  justify-content: center;
+  align-items: center;
+`;
+
+export const EmptyText = styled.Text`
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 18px;
+  color: #eee;
+`;
