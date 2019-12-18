@@ -5,9 +5,17 @@ export function addToCartRequest(id) {
   };
 }
 
-export function addToCartRequestSucess(id) {
+export function addToCartRequestSucess(product) {
   return {
-    type: '@cart/ADD_REQUEST_SUCCESS',
+    type: '@cart/ADD_SUCCESS',
+    product,
+  };
+}
+
+export function updateAmountSuccess(id, amount) {
+  return {
+    type: '@cart/UPDATE_AMOUNT_SUCCESS',
     id,
+    amount,
   };
 }

@@ -34,5 +34,6 @@ module.exports = {
     'react/state-in-constructor': 0,
     // 'react/static-property-placement': 2,
     'react/jsx-props-no-spreading': 'off',
+    'no-param-reassign': 'off',
   },
 };
