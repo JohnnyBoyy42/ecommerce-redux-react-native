@@ -37,7 +37,7 @@ function* addToCart({ id }) {
 
     yield put(addToCartRequestSucess(data));
 
-    NavigationService.navigate('Cart');
+    // NavigationService.navigate('Cart');
   }
 }
 
